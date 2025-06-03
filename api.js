@@ -1,10 +1,10 @@
 const API_URL = "https://demo2.z-bit.ee";
 
-export function getToken() {
-  return localStorage.getItem("access_token");
+function getToken() {
+  return localStorage.getItem("access_token") ?? "ms0GjkAPDtdcS8J4Q8bgkKJe2FY_NG4_";
 }
 
-export async function getTasks() {
+async function apigetTasks() {
   const res = await fetch(`${API_URL}/tasks`, {
     headers: { Authorization: `Bearer ${getToken()}` },
   });
@@ -12,7 +12,7 @@ export async function getTasks() {
   return await res.json();
 }
 
-export async function addTask(title, desc = "") {
+async function apiAddTask(title, desc = "") {
   const res = await fetch(`${API_URL}/tasks`, {
     method: "POST",
     headers: {
@@ -25,7 +25,7 @@ export async function addTask(title, desc = "") {
   return await res.json();
 }
 
-export async function updateTask(id, updates) {
+async function apiupdateTask(id, updates) {
   const res = await fetch(`${API_URL}/tasks/${id}`, {
     method: "PUT",
     headers: {
@@ -38,7 +38,7 @@ export async function updateTask(id, updates) {
   return await res.json();
 }
 
-export async function deleteTask(id) {
+async function apideleteTask(id) {
   const res = await fetch(`${API_URL}/tasks/${id}`, {
     method: "DELETE",
     headers: { Authorization: `Bearer ${getToken()}` },

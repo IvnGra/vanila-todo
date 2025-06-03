@@ -23,7 +23,10 @@ window.addEventListener('load', () => {
     tasks.forEach(renderTask);
 
     addTask.addEventListener('click', () => {
-        const task = createTask();  // create and push new task
+        const task = createTask(); 
+        console.log(task)
+        apiAddTask(task.name)
+        // create and push new task
         renderTask(task);           // render new task
         saveTasks();                // save updated list
     });
